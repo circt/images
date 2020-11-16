@@ -1,7 +1,8 @@
 name: Build and push images
 
 on:
-  release: [published]
+  release:
+    types: [published]
 
 jobs:
   build-integration-test-image:
