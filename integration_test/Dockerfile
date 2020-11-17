@@ -7,7 +7,7 @@ RUN apt-get upgrade -y
 RUN apt-get update && apt-get install -y \
   man curl wget unzip tar ca-certificates libtool \
   clang lld \
-  build-essential cmake make ninja-build \
+  build-essential cmake make ninja-build pkg-config \
   autoconf bc bison flex libfl2 libfl-dev perl libssl-dev \
   python3 python3-pip \
   git
