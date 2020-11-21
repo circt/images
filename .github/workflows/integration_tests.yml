@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Get CIRCT images repo
         uses: actions/checkout@v2
-      - name: Build image
+      - name: Build and push image
         working-directory: ./integration_test
         run: |
           TAG=$(echo $GITHUB_REF | cut -d / -f 3)

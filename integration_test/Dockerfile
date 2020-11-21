@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y \
   python3 python3-pip \
   git
 
-RUN python3 -m pip install pycapnp
+RUN python3 -m pip install pycapnp psutil
 
 COPY *.sh /tmp/
 
