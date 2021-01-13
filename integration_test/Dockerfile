@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
   build-essential cmake make ninja-build pkg-config \
   autoconf bc bison flex libfl2 libfl-dev perl libssl-dev \
   python3 python3-pip \
-  git
+  git yosys
 
 RUN python3 -m pip install pycapnp psutil
 
