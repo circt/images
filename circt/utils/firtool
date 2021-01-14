@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+cmd="cd work && firtool $@"
+
+docker run -v $PWD:/work -i ghcr.io/circt/images/circt:nightly /bin/sh -c "$cmd"
