@@ -1,0 +1,23 @@
+name: Build and push CIRCT docker image
+
+# Run on request and every day at 0300 PT
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: 0 11 * * *
+
+jobs:
+  build-circt-image:
+    name: Build and push Docker image containing built CIRCT utilities
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get CIRCT images repo
+        uses: actions/checkout@v2
+      - name: Build and push image
+        working-directory: ./circt
+        run: |
+          sudo apt-get install -y jq
+          echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
+          hash=`curl -X GET https://api.github.com/repos/llvm/circt/commits/main | jq -r '.sha'`
+          docker build --build-arg circtHash=$hash -t ghcr.io/${{github.repository}}/circt:nightly .
+          docker push ghcr.io/${{github.repository}}/circt:nightly
