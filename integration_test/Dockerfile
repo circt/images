@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y \
   python3 python3-pip \
   git yosys
 
-RUN python3 -m pip install pycapnp psutil
+RUN python3 -m pip install pycapnp psutil pybind11~=2.6 numpy
 
 COPY *.sh /tmp/
 
