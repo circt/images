@@ -1,0 +1,20 @@
+name: Build and push CIRCT CI build image
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build-circt-build-image:
+    name: Build and push Docker image for integration tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get CIRCT images repo
+        uses: actions/checkout@v2
+      - name: Build and push image
+        working-directory: ./circt-ci-build
+        run: |
+          TAG=$(echo $GITHUB_REF | cut -d / -f 3)
+          echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
+          docker build . --tag ghcr.io/${{github.repository}}/circt-ci-build:$TAG
+          docker push ghcr.io/${{github.repository}}/circt-ci-build:$TAG
