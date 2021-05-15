@@ -7,7 +7,7 @@ RUN apt-get upgrade -y
 RUN apt-get update && apt-get install -y \
   man curl wget unzip tar ca-certificates libtool \
   clang lld \
-  build-essential cmake make ninja-build pkg-config \
+  build-essential make ninja-build pkg-config \
   autoconf bc bison flex libfl2 libfl-dev perl libssl-dev \
   python3 python3-pip \
   clang-tidy-9
@@ -24,3 +24,9 @@ RUN wget https://github.com/git/git/archive/v2.23.0.tar.gz -O /root/git.tar.gz
 RUN cd /root && tar -xf git.tar.gz
 RUN cd /root/git-* && make prefix=/usr/ all -j8
 RUN cd /root/git-* && make prefix=/usr/ install -j8
+
+RUN cd /root && wget https://github.com/Kitware/CMake/releases/download/v3.20.2/cmake-3.20.2.tar.gz
+RUN cd /root && tar -zxvf cmake-3.20.2.tar.gz
+RUN cd /root/cmake-3.20.2 && ./bootstrap
+RUN cd /root/cmake-3.20.2 && make 
+RUN cd /root/cmake-3.20.2 && make instal
