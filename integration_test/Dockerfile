@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
   clang lld \
   build-essential cmake make ninja-build pkg-config \
   autoconf bc bison flex libfl2 libfl-dev perl libssl-dev \
-  python3 python3-pip \
+  python3.8 python3-pip python3.9 \
   git yosys
 
 RUN python3 -m pip install pycapnp psutil pybind11~=2.6 numpy
