@@ -29,6 +29,7 @@ RUN ln -s /usr/bin/clang-12 /usr/bin/clang;\
     ln -s /usr/bin/clang-tidy-diff-12.py /usr/bin/clang-tidy-diff;\
     ln -s /usr/bin/clang-format-12 /usr/bin/clang-format;\
     ln -s /usr/bin/clang-format-diff-12 /usr/bin/clang-format-diff;\
+    ln -s /usr/bin/git-clang-format-12 /usr/bin/git-clang-format;\
     ln -s /usr/bin/lld-12 /usr/bin/lld
 
 COPY *.sh /tmp/
