@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
   autoconf bc bison flex libfl2 libfl-dev perl libssl-dev \
   python3 python3-pip
 
-RUN pip3 install yapf
+RUN pip3 install yapf pytoml
 
 # Install latest release of LLVM
 RUN wget https://apt.llvm.org/llvm.sh; \
