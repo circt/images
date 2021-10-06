@@ -41,3 +41,11 @@ RUN rm -r /tmp/capnp
 # Compile, install, then cleanup Verilator
 RUN /tmp/verilator.sh
 RUN rm -r /tmp/verilator-*
+
+# Create manylinux compatible directory structure.
+RUN mkdir -p /opt/python/cp38-cp38/bin; \
+    ln -s /usr/bin/python3.8 /opt/python/cp38-cp38/bin/python; \
+    ln -s /usr/bin/pip /opt/python/cp38-cp38/bin/pip; \
+    mkdir -p /opt/python/cp39-cp39/bin; \
+    ln -s /usr/bin/python3.9 /opt/python/cp39-cp39/bin/python; \
+    ln -s /usr/bin/pip /opt/python/cp39-cp39/bin/pip
