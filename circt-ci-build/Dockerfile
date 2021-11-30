@@ -16,14 +16,14 @@ RUN pip3 install yapf toml
 # Install latest release of LLVM
 RUN wget https://apt.llvm.org/llvm.sh; \
     chmod +x llvm.sh; \
-    ./llvm.sh 12;\
-    apt install -y clang-format-12 clang-tidy-12
+    ./llvm.sh 13;\
+    apt install -y clang-format-13 clang-tidy-13
 
-RUN ln -s /usr/bin/clang-12 /usr/bin/clang;\
-    ln -s /usr/bin/clang++-12 /usr/bin/clang++;\
-    ln -s /usr/bin/clang-tidy-12 /usr/bin/clang-tidy;\
-    ln -s /usr/bin/clang-tidy-diff-12.py /usr/bin/clang-tidy-diff;\
-    ln -s /usr/bin/clang-format-12 /usr/bin/clang-format;\
-    ln -s /usr/bin/clang-format-diff-12 /usr/bin/clang-format-diff;\
-    ln -s /usr/bin/git-clang-format-12 /usr/bin/git-clang-format;\
-    ln -s /usr/bin/lld-12 /usr/bin/lld
+RUN ln -s /usr/bin/clang-13 /usr/bin/clang;\
+    ln -s /usr/bin/clang++-13 /usr/bin/clang++;\
+    ln -s /usr/bin/clang-tidy-13 /usr/bin/clang-tidy;\
+    ln -s /usr/bin/clang-tidy-diff-13.py /usr/bin/clang-tidy-diff;\
+    ln -s /usr/bin/clang-format-13 /usr/bin/clang-format;\
+    ln -s /usr/bin/clang-format-diff-13 /usr/bin/clang-format-diff;\
+    ln -s /usr/bin/git-clang-format-13 /usr/bin/git-clang-format;\
+    ln -s /usr/bin/lld-13 /usr/bin/lld
