@@ -42,6 +42,10 @@ RUN rm -r /tmp/capnp
 RUN /tmp/verilator.sh
 RUN rm -r /tmp/verilator-*
 
+# Compile, install, then cleanup OR-Tools
+RUN /tmp/or-tools.sh
+RUN rm -r /tmp/or-tools-*
+
 # Create manylinux compatible directory structure.
 RUN mkdir -p /opt/python/cp38-cp38/bin; \
     ln -s /usr/bin/python3.8 /opt/python/cp38-cp38/bin/python; \
