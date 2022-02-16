@@ -17,6 +17,8 @@ RUN apt-get update && apt-get install -y \
 RUN python3.8 -m pip install pycapnp psutil pybind11==2.6.2 numpy
 RUN python3.9 -m pip install pycapnp psutil pybind11==2.6.2 numpy
 
+RUN apt-get update && apt-get install -y tcl
+
 # Install latest release of LLVM
 RUN wget https://apt.llvm.org/llvm.sh; \
     chmod +x llvm.sh; \
