@@ -7,7 +7,7 @@ RUN apt-get upgrade -y
 RUN apt-get update && apt-get install -y \
   man curl wget unzip tar ca-certificates libtool \
   lsb-release software-properties-common \
-  build-essential ccache cmake make ninja-build pkg-config \
+  build-essential ccache make ninja-build pkg-config \
   autoconf bc bison flex libfl2 libfl-dev perl libssl-dev \
   git yosys
 
@@ -18,6 +18,11 @@ RUN python3.8 -m pip install pycapnp psutil pybind11==2.9.1 numpy
 RUN python3.9 -m pip install pycapnp psutil pybind11==2.9.1 numpy
 
 RUN apt-get update && apt-get install -y tcl
+
+# Install modern release of CMake
+RUN wget https://github.com/Kitware/CMake/releases/download/v3.23.2/cmake-3.23.2-linux-x86_64.sh; \
+    chmod +x cmake-3.23.2-linux-x86_64.sh; \
+    ./cmake-3.23.2-linux-x86_64.sh --skip-license --prefix=/usr
 
 # Install latest release of LLVM
 RUN wget https://apt.llvm.org/llvm.sh; \
