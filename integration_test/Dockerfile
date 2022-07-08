@@ -20,9 +20,9 @@ RUN python3.9 -m pip install pycapnp psutil pybind11==2.9.1 numpy
 RUN apt-get update && apt-get install -y tcl
 
 # Install modern release of CMake
-RUN wget https://github.com/Kitware/CMake/releases/download/v3.23.2/cmake-3.23.2-linux-x86_64.tar.gz; \
-    tar xzf cmake-3.23.2-linux-x86_64.tar.gz; \
-    mv cmake-3.23.2-linux-x86_64/bin/cmake /usr/bin/cmake
+RUN wget https://github.com/Kitware/CMake/releases/download/v3.23.2/cmake-3.23.2-linux-x86_64.sh; \
+    chmod +x cmake-3.23.2-linux-x86_64.sh; \
+    ./cmake-3.23.2-linux-x86_64.sh --skip-license --prefix=/usr
 
 # Install latest release of LLVM
 RUN wget https://apt.llvm.org/llvm.sh; \
