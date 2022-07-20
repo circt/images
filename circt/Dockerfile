@@ -1,4 +1,4 @@
-FROM ghcr.io/circt/images/circt-integration-test:v5
+FROM ghcr.io/circt/images/circt-integration-test:v10.3
 ARG circtHash
 
 # Checkout CIRCT and LLVM
@@ -33,6 +33,8 @@ RUN mkdir /tmp/circt/build && \
   cd /tmp/circt/build && cmake -G Ninja .. \
   -DMLIR_DIR=llvm/build/lib/cmake/mlir \
   -DLLVM_DIR=llvm/build/lib/cmake/llvm \
+  -DCMAKE_C_COMPILER=clang \
+  -DCMAKE_CXX_COMPILER=clang++ \
   -DLLVM_ENABLE_ASSERTIONS=ON \
   -DVERILATOR_PATH=/usr/bin/verilator \
   -DCAPNP_PATH=/usr \
