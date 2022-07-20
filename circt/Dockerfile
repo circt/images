@@ -1,4 +1,4 @@
-FROM ghcr.io/circt/images/circt-integration-test:v5
+FROM ghcr.io/circt/images/circt-integration-test:v10.3
 ARG circtHash
 
 # Checkout CIRCT and LLVM
