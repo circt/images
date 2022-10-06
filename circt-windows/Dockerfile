@@ -32,6 +32,9 @@ RUN pip install wheel numpy pyyaml pybind11 cocotb cocotb-test jinja2
 # Clone and bootstrap vcpkg.
 RUN cd c:\ && git clone https://github.com/Microsoft/vcpkg.git && .\vcpkg\bootstrap-vcpkg.bat
 
+# Install capnproto via vcpkg.
+RUN c:\vcpkg\vcpkg install capnproto
+
 # Use developer command prompt and start PowerShell if no other command specified.
 ENTRYPOINT C:\BuildTools\Common7\Tools\VsDevCmd.bat &&
 CMD powershell.exe -NoLogo -ExecutionPolicy Bypass
