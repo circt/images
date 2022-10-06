@@ -5,7 +5,7 @@ on:
 
 jobs:
   build-circt-build-image:
-    name: Build and push Docker CI builds
+    name: Build and push Docker for Linux CI builds
     runs-on: ubuntu-latest
     steps:
       - name: Get CIRCT images repo
@@ -21,7 +21,7 @@ jobs:
           docker push ghcr.io/${{github.repository}}/circt-ci-build:latest
 
   build-circt-windows-build-image:
-    name: Build and push Docker CI builds
+    name: Build and push Docker for Windows CI builds
     runs-on: windows-2019
     steps:
       - name: Get CIRCT images repo
