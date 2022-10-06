@@ -15,10 +15,12 @@ ADD https://aka.ms/vs/16/release/vs_buildtools.exe C:\TEMP\vs_buildtools.exe
 RUN C:\TEMP\vs_buildtools.exe --quiet --wait --norestart --nocache `
   --channelUri C:\TEMP\VisualStudio.chman `
   --installChannelUri C:\TEMP\VisualStudio.chman `
-  --add Microsoft.VisualStudio.Workload.VCTools --includeRecommended`
+  --add Microsoft.VisualStudio.Workload.VCTools --includeRecommended `
+  --add Microsoft.VisualStudio.Component.VC.ATL `
+  --add Microsoft.VisualStudio.Component.VC.ATLMFC `
   --installPath C:\BuildTools
 
-# Download git to somewhere in the devcmd path.
+# Download and install git.
 ADD https://github.com/git-for-windows/git/releases/download/v2.38.0.windows.1/Git-2.38.0-64-bit.exe C:\TEMP\git-install.exe
 RUN C:\TEMP\git-install.exe /VERYSILENT /NORESTART
 
@@ -30,6 +32,9 @@ RUN pip install wheel numpy pyyaml pybind11 cocotb cocotb-test jinja2
 # Clone and bootstrap vcpkg.
 RUN cd c:\ && git clone https://github.com/Microsoft/vcpkg.git && .\vcpkg\bootstrap-vcpkg.bat
 
+# Install capnproto via vcpkg.
+RUN c:\vcpkg\vcpkg install capnproto
+
 # Use developer command prompt and start PowerShell if no other command specified.
-ENTRYPOINT C:\BuildTools\Common7\Tools\VsDevCmd.bat &&
+ENTRYPOINT C:\BuildTools\Common7\Tools\VsDevCmd.bat -arch=x64 -host_arch=x64 &&
 CMD powershell.exe -NoLogo -ExecutionPolicy Bypass
