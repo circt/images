@@ -13,7 +13,7 @@ jobs:
       - name: Build and push windows image
         working-directory: ./circt-windows
         run: |
-          TAG=$(date -u +%Y%m%d%H%M%S)
+          $TAG=$(date -Format yyyyMMddHHmmss)
           echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
           docker build . --tag ghcr.io/${{github.repository}}/circt-windows-build:$TAG
           docker push ghcr.io/${{github.repository}}/circt-windows-build:$TAG
