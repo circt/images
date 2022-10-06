@@ -15,7 +15,9 @@ ADD https://aka.ms/vs/16/release/vs_buildtools.exe C:\TEMP\vs_buildtools.exe
 RUN C:\TEMP\vs_buildtools.exe --quiet --wait --norestart --nocache `
   --channelUri C:\TEMP\VisualStudio.chman `
   --installChannelUri C:\TEMP\VisualStudio.chman `
-  --add Microsoft.VisualStudio.Workload.VCTools --includeRecommended`
+  --add Microsoft.VisualStudio.Workload.VCTools --includeRecommended `
+  --add Microsoft.VisualStudio.Component.VC.ATL `
+  --add Microsoft.VisualStudio.Component.VC.ATLMFC `
   --installPath C:\BuildTools
 
 # Download git to somewhere in the devcmd path.
