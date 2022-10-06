@@ -1,4 +1,4 @@
-name: Build and push CIRCT CI build image
+name: Build and push CIRCT CI build images
 
 on:
   workflow_dispatch:
@@ -19,3 +19,20 @@ jobs:
           docker push ghcr.io/${{github.repository}}/circt-ci-build:$TAG
           docker tag ghcr.io/${{github.repository}}/circt-ci-build:$TAG ghcr.io/${{github.repository}}/circt-ci-build:latest
           docker push ghcr.io/${{github.repository}}/circt-ci-build:latest
+
+  build-circt-windows-build-image:
+    name: Build and push Docker CI builds
+    runs-on: windows-2019
+    steps:
+      - name: Get CIRCT images repo
+        uses: actions/checkout@v2
+      - name: Build and push windows image
+        shell: pwsh
+        working-directory: ./circt-windows
+        run: |
+          echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
+          $TAG=$(Get-Date -Format yyyyMMddHHmmss)
+          docker build . --tag ghcr.io/${{github.repository}}/circt-windows-build:$TAG
+          docker push ghcr.io/${{github.repository}}/circt-windows-build:$TAG
+          docker tag ghcr.io/${{github.repository}}/circt-windows-build:$TAG ghcr.io/${{github.repository}}/circt-windows-build:latest
+          docker push ghcr.io/${{github.repository}}/circt-windows-build:latest
