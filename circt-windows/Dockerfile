@@ -20,7 +20,7 @@ RUN C:\TEMP\vs_buildtools.exe --quiet --wait --norestart --nocache `
   --add Microsoft.VisualStudio.Component.VC.ATLMFC `
   --installPath C:\BuildTools
 
-# Download git to somewhere in the devcmd path.
+# Download and install git.
 ADD https://github.com/git-for-windows/git/releases/download/v2.38.0.windows.1/Git-2.38.0-64-bit.exe C:\TEMP\git-install.exe
 RUN C:\TEMP\git-install.exe /VERYSILENT /NORESTART
 
@@ -36,5 +36,5 @@ RUN cd c:\ && git clone https://github.com/Microsoft/vcpkg.git && .\vcpkg\bootst
 RUN c:\vcpkg\vcpkg install capnproto
 
 # Use developer command prompt and start PowerShell if no other command specified.
-ENTRYPOINT C:\BuildTools\Common7\Tools\VsDevCmd.bat &&
+ENTRYPOINT C:\BuildTools\Common7\Tools\VsDevCmd.bat -arch=x64 -host_arch=x64 &&
 CMD powershell.exe -NoLogo -ExecutionPolicy Bypass
