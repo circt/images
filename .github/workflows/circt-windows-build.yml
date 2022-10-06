@@ -11,6 +11,7 @@ jobs:
       - name: Get CIRCT images repo
         uses: actions/checkout@v2
       - name: Build and push windows image
+        shell: pwsh
         working-directory: ./circt-windows
         run: |
           $TAG=$(date -Format yyyyMMddHHmmss)
