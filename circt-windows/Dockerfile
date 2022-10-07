@@ -1,6 +1,6 @@
 # escape=`
 
-ARG FROM_IMAGE=mcr.microsoft.com/windows:ltsc2019
+ARG FROM_IMAGE=mcr.microsoft.com/windows/servercore:ltsc2019
 FROM ${FROM_IMAGE}
 
 # Reset the shell.
@@ -27,13 +27,13 @@ RUN C:\TEMP\git-install.exe /VERYSILENT /NORESTART
 # Download and install python.
 ADD https://www.python.org/ftp/python/3.10.7/python-3.10.7-amd64.exe C:\TEMP\python-install.exe
 RUN C:\TEMP\python-install.exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0
-RUN pip install wheel numpy pyyaml pybind11 cocotb cocotb-test jinja2
+RUN pip install wheel numpy pyyaml pybind11 cocotb cocotb-test jinja2 psutil
 
 # Clone and bootstrap vcpkg.
 RUN cd c:\ && git clone https://github.com/Microsoft/vcpkg.git && .\vcpkg\bootstrap-vcpkg.bat
 
 # Install capnproto via vcpkg.
-RUN c:\vcpkg\vcpkg install capnproto
+RUN c:\vcpkg\vcpkg install capnproto:x64-windows
 
 # Use developer command prompt and start PowerShell if no other command specified.
 ENTRYPOINT C:\BuildTools\Common7\Tools\VsDevCmd.bat -arch=x64 -host_arch=x64 &&

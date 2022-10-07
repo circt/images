@@ -3,20 +3,31 @@ name: Build and push CIRCT Windows build docker image
 on:
   workflow_dispatch:
 
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: circt-windows-build
+
 jobs:
   build-circt-windows-build-image:
-    name: Build and push Docker CI builds
+    name: Build and push Windows Docker CI builds
     runs-on: windows-2019
     steps:
       - name: Get CIRCT images repo
         uses: actions/checkout@v2
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build and push windows image
         shell: pwsh
         working-directory: ./circt-windows
         run: |
-          echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
           $TAG=$(Get-Date -Format yyyyMMddHHmmss)
-          docker build . --tag ghcr.io/${{github.repository}}/circt-windows-build:$TAG
-          docker push ghcr.io/${{github.repository}}/circt-windows-build:$TAG
-          docker tag ghcr.io/${{github.repository}}/circt-windows-build:$TAG ghcr.io/${{github.repository}}/circt-windows-build:latest
-          docker push ghcr.io/${{github.repository}}/circt-windows-build:latest
+          docker build . -m 4gb --tag ghcr.io/${{github.repository}}/${{ env.IMAGE_NAME }}:$TAG
+          docker push ghcr.io/${{github.repository}}/${{ env.IMAGE_NAME }}:$TAG
+          docker tag ghcr.io/${{github.repository}}/${{ env.IMAGE_NAME }}:$TAG ghcr.io/${{github.repository}}/circt-windows-build:latest
+          docker push ghcr.io/${{github.repository}}/${{ env.IMAGE_NAME }}:latest
