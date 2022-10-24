@@ -27,7 +27,7 @@ jobs:
         working-directory: ./circt-windows
         run: |
           $TAG=$(Get-Date -Format yyyyMMddHHmmss)
-          docker build . -m 4gb --tag ghcr.io/${{github.repository}}/${{ env.IMAGE_NAME }}:$TAG
+          docker build . -m 8gb --tag ghcr.io/${{github.repository}}/${{ env.IMAGE_NAME }}:$TAG
           docker push ghcr.io/${{github.repository}}/${{ env.IMAGE_NAME }}:$TAG
           docker tag ghcr.io/${{github.repository}}/${{ env.IMAGE_NAME }}:$TAG ghcr.io/${{github.repository}}/circt-windows-build:latest
           docker push ghcr.io/${{github.repository}}/${{ env.IMAGE_NAME }}:latest

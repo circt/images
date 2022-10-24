@@ -20,6 +20,9 @@ RUN C:\TEMP\vs_buildtools.exe --quiet --wait --norestart --nocache `
   --add Microsoft.VisualStudio.Component.VC.ATLMFC `
   --installPath C:\BuildTools
 
+# Install NuGet as package pprovider (needed for find-vs.ps1).
+RUN powershell Install-PackageProvider -Name NuGet -Force
+
 # Download and install git.
 ADD https://github.com/git-for-windows/git/releases/download/v2.38.0.windows.1/Git-2.38.0-64-bit.exe C:\TEMP\git-install.exe
 RUN C:\TEMP\git-install.exe /VERYSILENT /NORESTART
