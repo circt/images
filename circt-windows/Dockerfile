@@ -23,6 +23,11 @@ RUN C:\TEMP\vs_buildtools.exe --quiet --wait --norestart --nocache `
 # Install NuGet as package pprovider (needed for find-vs.ps1).
 RUN powershell Install-PackageProvider -Name NuGet -Force
 
+# Download, unzip, and add ccache to path
+ADD https://github.com/ccache/ccache/releases/download/v4.7.1/ccache-4.7.1-windows-x86_64.zip C:\TEMP\ccache.zip
+RUN powershell Expand-Archive -Path C:\TEMP\ccache.zip -DestinationPath C:\ccache
+RUN setx /M PATH "%PATH%;C:\ccache\ccache-4.7.1-windows-x86_64"
+
 # Download and install git.
 ADD https://github.com/git-for-windows/git/releases/download/v2.38.0.windows.1/Git-2.38.0-64-bit.exe C:\TEMP\git-install.exe
 RUN C:\TEMP\git-install.exe /VERYSILENT /NORESTART
