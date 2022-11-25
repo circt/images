@@ -54,6 +54,9 @@ RUN rm -r /tmp/verilator-*
 RUN /tmp/or-tools.sh
 RUN rm -r /tmp/or-tools-*
 
+# Install a modern release of Z3
+RUN /tmp/z3.sh
+
 # Create manylinux compatible directory structure.
 RUN mkdir -p /opt/python/cp38-cp38/bin; \
     ln -s /usr/bin/python3.8 /opt/python/cp38-cp38/bin/python; \
