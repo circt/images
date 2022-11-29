@@ -24,10 +24,27 @@ RUN C:\TEMP\vs_buildtools.exe --quiet --wait --norestart --nocache `
 ADD https://github.com/git-for-windows/git/releases/download/v2.38.0.windows.1/Git-2.38.0-64-bit.exe C:\TEMP\git-install.exe
 RUN C:\TEMP\git-install.exe /VERYSILENT /NORESTART
 
-# Download and install python.
-ADD https://www.python.org/ftp/python/3.10.7/python-3.10.7-amd64.exe C:\TEMP\python-install.exe
-RUN C:\TEMP\python-install.exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0
-RUN pip install wheel numpy pyyaml pybind11 cocotb cocotb-test jinja2
+# Download and install python versions.
+ADD https://www.python.org/ftp/python/3.11.0/python-3.11.0-amd64.exe C:\TEMP\python311-install.exe
+RUN C:\TEMP\python311-install.exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0
+RUN ("C:\Program Files\Python311/python.exe" -m pip install wheel numpy pyyaml pybind11 cocotb cocotb-test jinja2 psutil)
+
+ADD https://www.python.org/ftp/python/3.10.8/python-3.10.8-amd64.exe C:\TEMP\python310-install.exe
+RUN C:\TEMP\python310-install.exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0
+RUN ("C:\Program Files\Python310/python.exe" -m pip install wheel numpy pyyaml pybind11 cocotb cocotb-test jinja2 psutil)
+
+ADD https://www.python.org/ftp/python/3.9.13/python-3.9.13-amd64.exe C:\TEMP\python39-install.exe
+RUN C:\TEMP\python39-install.exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0
+RUN ("C:\Program Files\Python39/python.exe" -m pip install wheel numpy pyyaml pybind11 cocotb cocotb-test jinja2 psutil)
+
+ADD https://www.python.org/ftp/python/3.8.10/python-3.8.10-amd64.exe C:\TEMP\python38-install.exe
+RUN C:\TEMP\python38-install.exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0
+RUN ("C:\Program Files\Python38\python.exe" -m pip install wheel numpy pyyaml pybind11 cocotb cocotb-test jinja2 psutil)
+
+ADD https://www.python.org/ftp/python/3.7.9/python-3.7.9-amd64.exe C:\TEMP\python37-install.exe
+RUN C:\TEMP\python37-install.exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0
+RUN ("C:\Program Files\Python37\python.exe" -m pip install wheel numpy pyyaml pybind11 cocotb cocotb-test jinja2 psutil)
+
 
 # Clone and bootstrap vcpkg.
 RUN cd c:\ && git clone https://github.com/Microsoft/vcpkg.git && .\vcpkg\bootstrap-vcpkg.bat
