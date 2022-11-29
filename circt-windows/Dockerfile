@@ -1,6 +1,6 @@
 # escape=`
 
-ARG FROM_IMAGE=mcr.microsoft.com/windows:ltsc2019
+ARG FROM_IMAGE=mcr.microsoft.com/windows/servercore:ltsc2019
 FROM ${FROM_IMAGE}
 
 # Reset the shell.
@@ -45,6 +45,10 @@ ADD https://www.python.org/ftp/python/3.7.9/python-3.7.9-amd64.exe C:\TEMP\pytho
 RUN C:\TEMP\python37-install.exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0
 RUN ("C:\Program Files\Python37\python.exe" -m pip install wheel numpy pyyaml pybind11 cocotb cocotb-test jinja2 psutil)
 
+
+# Install PowerShell
+ADD https://github.com/PowerShell/PowerShell/releases/download/v7.3.0/PowerShell-7.3.0-win-x86.msi C:\TEMP\pwsh-install.msi
+RUN msiexec /i C:\TEMP\pwsh-install.msi
 
 # Clone and bootstrap vcpkg.
 RUN cd c:\ && git clone https://github.com/Microsoft/vcpkg.git && .\vcpkg\bootstrap-vcpkg.bat
