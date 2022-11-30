@@ -31,6 +31,7 @@ RUN setx /M PATH "%PATH%;C:\ccache\ccache-4.7.1-windows-x86_64"
 # Download and install git.
 ADD https://github.com/git-for-windows/git/releases/download/v2.38.0.windows.1/Git-2.38.0-64-bit.exe C:\TEMP\git-install.exe
 RUN C:\TEMP\git-install.exe /VERYSILENT /NORESTART
+RUN setx /M PATH "%PATH%;C:\Program Files\Git\bin"
 
 # Download and install python versions.
 ADD https://www.python.org/ftp/python/3.11.0/python-3.11.0-amd64.exe C:\TEMP\python311-install.exe
