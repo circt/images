@@ -28,3 +28,7 @@ RUN ln -s /usr/bin/clang-13 /usr/bin/clang;\
     ln -s /usr/bin/git-clang-format-13 /usr/bin/git-clang-format;\
     ln -s /usr/bin/lld-13 /usr/bin/lld;\
     ln -s /usr/bin/lld-13 /usr/bin/ld.lld
+
+# Install a modern release of Z3
+COPY z3.sh /tmp/
+RUN /tmp/z3.sh
