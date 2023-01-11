@@ -1,7 +1,7 @@
 #!/bin/bash
 # Downloads, compiles, and installs OR-Tools into /usr
 
-OR_TOOLS_VER=9.2
+OR_TOOLS_VER=9.5
 
 # Disable fetching and building SCIP below because of its license:
 #  "SCIP is distributed under the ZIB Academic License. You are allowed to
