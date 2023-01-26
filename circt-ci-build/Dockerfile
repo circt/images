@@ -7,7 +7,7 @@ RUN apt-get upgrade -y
 RUN apt-get update && apt-get install -y \
   man curl wget unzip tar ca-certificates libtool git \
   lsb-release software-properties-common \
-  build-essential cmake make ninja-build pkg-config \
+  build-essential make ninja-build pkg-config \
   autoconf bc bison flex libfl2 libfl-dev perl libssl-dev \
   python3 python3-pip
 
@@ -28,3 +28,6 @@ RUN ln -s /usr/bin/clang-13 /usr/bin/clang;\
     ln -s /usr/bin/git-clang-format-13 /usr/bin/git-clang-format;\
     ln -s /usr/bin/lld-13 /usr/bin/lld;\
     ln -s /usr/bin/lld-13 /usr/bin/ld.lld
+
+ADD https://github.com/Kitware/CMake/releases/download/v3.25.2/cmake-3.25.2-linux-x86_64.sh /tmp/cmake_install.sh
+RUN bash /tmp/cmake_install.sh --prefix=/usr/local --skip-license
