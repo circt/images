@@ -54,6 +54,9 @@ ADD https://www.python.org/ftp/python/3.7.9/python-3.7.9-amd64.exe C:\TEMP\pytho
 RUN C:\TEMP\python37-install.exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0
 RUN ("C:\Program Files\Python37\python.exe" -m pip install wheel numpy pyyaml pybind11 cocotb cocotb-test jinja2 psutil)
 
+# Get latest version of cmake
+ADD https://github.com/Kitware/CMake/releases/download/v3.26.0/cmake-3.26.0-windows-x86_64.msi C:\TEMP\cmake.msi
+RUN msiexec /i C:\TEMP\cmake.msi
 
 # Install PowerShell
 ADD https://github.com/PowerShell/PowerShell/releases/download/v7.3.0/PowerShell-7.3.0-win-x86.msi C:\TEMP\pwsh-install.msi
