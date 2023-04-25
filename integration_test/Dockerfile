@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
   lsb-release software-properties-common \
   build-essential ccache make ninja-build pkg-config \
   autoconf bc bison flex libfl2 libfl-dev perl libssl-dev \
-  git yosys clang-tidy libsystemc-dev
+  git yosys clang-tidy libsystemc-dev apt
 
 RUN apt-get update && apt-get install -y \
   python3.8-dev python3-pip python3.9-dev
