@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
   lsb-release software-properties-common \
   build-essential make ninja-build pkg-config \
   autoconf bc bison flex libfl2 libfl-dev perl libssl-dev \
-  python3 python3-pip
+  python3 python3-pip valgrind
 
 RUN pip3 install yapf toml GitPython
 
