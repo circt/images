@@ -9,13 +9,13 @@ RUN apt-get update && apt-get install -y \
   lsb-release software-properties-common \
   build-essential ccache make ninja-build pkg-config \
   autoconf bc bison flex libfl2 libfl-dev perl libssl-dev \
-  git yosys clang-tidy libsystemc-dev valgrind
+  git yosys clang-tidy libsystemc-dev valgrind gperf
 
 RUN apt-get update && apt-get install -y \
   python3.8-dev python3-pip python3.9-dev
 
-RUN python3.8 -m pip install pycapnp psutil pybind11==2.9.1 numpy jinja2
-RUN python3.9 -m pip install pycapnp psutil pybind11==2.9.1 numpy jinja2
+RUN python3.8 -m pip install pycapnp psutil pybind11==2.9.1 numpy jinja2 cocotb cocotb_test
+RUN python3.9 -m pip install pycapnp psutil pybind11==2.9.1 numpy jinja2 cocotb cocotb_test
 
 RUN apt-get update && apt-get install -y tcl
 
@@ -51,6 +51,10 @@ RUN rm -r /tmp/verilator-*
 # Compile, install, then cleanup OR-Tools
 RUN /tmp/or-tools.sh
 RUN rm -r /tmp/or-tools-*
+
+# Compile, install, then cleanup iverilog
+run /tmp/iverilog.sh
+run rm -r /tmp/iverilog
 
 # Install a modern release of Z3
 RUN /tmp/z3.sh
