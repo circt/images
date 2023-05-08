@@ -54,7 +54,7 @@ RUN rm -r /tmp/or-tools-*
 
 # Compile, install, then cleanup iverilog
 run /tmp/iverilog.sh
-run rm -r /tmp/iverilog
+run rm -r /tmp/iverilog-*
 
 # Install a modern release of Z3
 RUN /tmp/z3.sh
