@@ -34,7 +34,11 @@ RUN C:\TEMP\git-install.exe /VERYSILENT /NORESTART
 RUN setx /M PATH "%PATH%;C:\Program Files\Git\bin"
 
 # Download and install python versions.
-ADD https://www.python.org/ftp/python/3.11.0/python-3.11.0-amd64.exe C:\TEMP\python311-install.exe
+ADD https://www.python.org/ftp/python/3.12.0/python-3.12.0-amd64.exe C:\TEMP\python312-install.exe
+RUN C:\TEMP\python312-install.exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0
+RUN ("C:\Program Files\Python312/python.exe" -m pip install wheel numpy pyyaml pybind11 cocotb cocotb-test jinja2 psutil)
+
+ADD https://www.python.org/ftp/python/3.11.6/python-3.11.6-amd64.exe C:\TEMP\python311-install.exe
 RUN C:\TEMP\python311-install.exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0
 RUN ("C:\Program Files\Python311/python.exe" -m pip install wheel numpy pyyaml pybind11 cocotb cocotb-test jinja2 psutil)
 
@@ -64,6 +68,9 @@ RUN msiexec /i C:\TEMP\pwsh-install.msi
 
 # Clone and bootstrap vcpkg.
 RUN cd c:\ && git clone https://github.com/Microsoft/vcpkg.git && .\vcpkg\bootstrap-vcpkg.bat
+
+# Install zlib via vcpkg.
+RUN c:\vcpkg\vcpkg install zlib:x64-windows-static
 
 # Install capnproto via vcpkg.
 RUN c:\vcpkg\vcpkg install capnproto:x64-windows
