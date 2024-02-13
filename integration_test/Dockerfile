@@ -35,8 +35,9 @@ RUN ln -s /usr/bin/clang-16 /usr/bin/clang;\
   ln -s /usr/bin/lld-16 /usr/bin/lld;\
   ln -s /usr/bin/lld-16 /usr/bin/ld.lld
 
-# Install GCC 10 to get C++20 header support
-RUN apt install -y g++-10
+# Install GCC 11 to get C++20 header support and support for building slang
+RUN add-apt-repository ppa:ubuntu-toolchain-r/test
+RUN apt install -y g++-11
 
 COPY *.sh /tmp/
 
@@ -56,8 +57,8 @@ RUN /tmp/or-tools.sh
 RUN rm -r /tmp/or-tools-*
 
 # Compile, install, then cleanup iverilog
-run /tmp/iverilog.sh
-run rm -r /tmp/iverilog-*
+RUN /tmp/iverilog.sh
+RUN rm -r /tmp/iverilog-*
 
 # Install a modern release of Z3
 RUN /tmp/z3.sh
