@@ -21,19 +21,22 @@ RUN apt-get update && apt-get install -y tcl
 
 # Install latest release of LLVM
 RUN wget https://apt.llvm.org/llvm.sh; \
-    chmod +x llvm.sh; \
-    ./llvm.sh 13;\
-    apt install -y clang-format-13 clang-tidy-13
+  chmod +x llvm.sh; \
+  ./llvm.sh 16;\
+  apt install -y clang-format-16 clang-tidy-16
 
-RUN ln -s /usr/bin/clang-13 /usr/bin/clang;\
-    ln -s /usr/bin/clang++-13 /usr/bin/clang++;\
-    ln -s /usr/bin/clang-tidy-13 /usr/bin/clang-tidy;\
-    ln -s /usr/bin/clang-tidy-diff-13.py /usr/bin/clang-tidy-diff;\
-    ln -s /usr/bin/clang-format-13 /usr/bin/clang-format;\
-    ln -s /usr/bin/clang-format-diff-13 /usr/bin/clang-format-diff;\
-    ln -s /usr/bin/git-clang-format-13 /usr/bin/git-clang-format;\
-    ln -s /usr/bin/lld-13 /usr/bin/lld;\
-    ln -s /usr/bin/lld-13 /usr/bin/ld.lld
+RUN ln -s /usr/bin/clang-16 /usr/bin/clang;\
+  ln -s /usr/bin/clang++-16 /usr/bin/clang++;\
+  ln -s /usr/bin/clang-tidy-16 /usr/bin/clang-tidy;\
+  ln -s /usr/bin/clang-tidy-diff-16.py /usr/bin/clang-tidy-diff;\
+  ln -s /usr/bin/clang-format-16 /usr/bin/clang-format;\
+  ln -s /usr/bin/clang-format-diff-16 /usr/bin/clang-format-diff;\
+  ln -s /usr/bin/git-clang-format-16 /usr/bin/git-clang-format;\
+  ln -s /usr/bin/lld-16 /usr/bin/lld;\
+  ln -s /usr/bin/lld-16 /usr/bin/ld.lld
+
+# Install GCC 10 to get C++20 header support
+RUN apt install -y g++-10
 
 COPY *.sh /tmp/
 
@@ -61,8 +64,8 @@ RUN /tmp/z3.sh
 
 # Create manylinux compatible directory structure.
 RUN mkdir -p /opt/python/cp38-cp38/bin; \
-    ln -s /usr/bin/python3.8 /opt/python/cp38-cp38/bin/python; \
-    ln -s /usr/bin/pip /opt/python/cp38-cp38/bin/pip; \
-    mkdir -p /opt/python/cp39-cp39/bin; \
-    ln -s /usr/bin/python3.9 /opt/python/cp39-cp39/bin/python; \
-    ln -s /usr/bin/pip /opt/python/cp39-cp39/bin/pip
+  ln -s /usr/bin/python3.8 /opt/python/cp38-cp38/bin/python; \
+  ln -s /usr/bin/pip /opt/python/cp38-cp38/bin/pip; \
+  mkdir -p /opt/python/cp39-cp39/bin; \
+  ln -s /usr/bin/python3.9 /opt/python/cp39-cp39/bin/python; \
+  ln -s /usr/bin/pip /opt/python/cp39-cp39/bin/pip
