@@ -17,7 +17,7 @@ RUN pip3 install yapf toml GitPython
 RUN wget https://apt.llvm.org/llvm.sh; \
   chmod +x llvm.sh; \
   ./llvm.sh 17;\
-  apt install -y clang-format-17 clang-tidy17
+  apt install -y clang-format-17 clang-tidy-17
 
 RUN ln -s /usr/bin/clang-17 /usr/bin/clang; \
   ln -s /usr/bin/clang++-17 /usr/bin/clang++; \
