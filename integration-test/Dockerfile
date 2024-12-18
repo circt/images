@@ -41,8 +41,8 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get update && apt-get install -y \
   python3.8-dev python3-pip python3.9-dev
 
-RUN python3.8 -m pip install pycapnp psutil pybind11==2.11.2 nanobind==2.4.0 numpy jinja2 cocotb cocotb_test
-RUN python3.9 -m pip install pycapnp psutil pybind11==2.11.2 nanobind==2.4.0 numpy jinja2 cocotb cocotb_test
+RUN python3.8 -m pip install pycapnp psutil pybind11==2.11.2 nanobind==2.4.0 numpy jinja2 cocotb cocotb_test click
+RUN python3.9 -m pip install pycapnp psutil pybind11==2.11.2 nanobind==2.4.0 numpy jinja2 cocotb cocotb_test click
 
 RUN apt-get update && apt-get install -y tcl
 
