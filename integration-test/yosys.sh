@@ -1,5 +1,6 @@
 #!/bin/bash
 # Downloads, compiles, and installs Yosys
+set -xe
 
 YOSYS_VER=0.47
 
@@ -13,3 +14,19 @@ make -j$(nproc)
 make install
 cd /tmp
 rm -r /tmp/yosys
+
+# Perform a sanity check.
+cat > /tmp/sanity.v <<EOF
+module Adder(a, b, z);
+  input  [7:0] a;
+  input  [7:0] b;
+  output [7:0] z;
+  assign z = a + b;
+endmodule
+EOF
+
+yosys <<EOF
+read_verilog /tmp/sanity.v
+hierarchy -check
+opt
+EOF

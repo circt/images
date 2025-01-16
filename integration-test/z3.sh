@@ -1,6 +1,7 @@
 #!/bin/bash
 # Installs Z3 into "/usr/local"; this directory has precedence among the default
 # $PATH locations and will shadow the "/usr" installation.
+set -xe
 
 Z3_VER=4.11.2
 
@@ -47,3 +48,15 @@ else
   # There is no appropriate package release, resorting to compilation.
   compile_Z3
 fi
+
+# Perform a sanity check.
+z3 -in -smt2 >/tmp/z3.log <<EOF
+(declare-const a Bool)
+(declare-const b Bool)
+(define-fun demorgan () Bool
+    (= (and a b) (not (or (not a) (not b)))))
+(assert (not demorgan))
+(check-sat)
+EOF
+cat /tmp/z3.log
+grep "unsat" /tmp/z3.log >/dev/null
