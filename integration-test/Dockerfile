@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:24.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y \
   gawk \
   git \
   gperf \
+  iverilog \
   libffi-dev \
   libfl-dev \
   libfl2 \
@@ -39,10 +40,10 @@ RUN apt-get update && apt-get install -y \
   zlib1g-dev
 
 RUN apt-get update && apt-get install -y \
-  python3.8-dev python3-pip python3.9-dev
+  python3.12-dev python3-pip
 
-RUN python3.8 -m pip install pycapnp psutil pybind11==2.11.2 nanobind==2.4.0 numpy jinja2 cocotb cocotb_test click
-RUN python3.9 -m pip install pycapnp psutil pybind11==2.11.2 nanobind==2.4.0 numpy jinja2 cocotb cocotb_test click
+RUN python3.12 -m pip config set global.break-system-packages true
+RUN python3.12 -m pip install pycapnp psutil pybind11==2.11.2 nanobind==2.4.0 numpy jinja2 cocotb cocotb_test click
 
 RUN apt-get update && apt-get install -y tcl
 
@@ -83,10 +84,6 @@ RUN rm -r /tmp/verilator-*
 RUN /tmp/or-tools.sh
 RUN rm -r /tmp/or-tools-*
 
-# Compile, install, then cleanup iverilog
-RUN /tmp/iverilog.sh
-RUN rm -r /tmp/iverilog-*
-
 # Install a modern release of Z3
 RUN /tmp/z3.sh
 
@@ -97,9 +94,6 @@ RUN /tmp/yosys.sh
 RUN /tmp/sby.sh
 
 # Create manylinux compatible directory structure.
-RUN mkdir -p /opt/python/cp38-cp38/bin; \
-  ln -s /usr/bin/python3.8 /opt/python/cp38-cp38/bin/python; \
-  ln -s /usr/bin/pip /opt/python/cp38-cp38/bin/pip; \
-  mkdir -p /opt/python/cp39-cp39/bin; \
-  ln -s /usr/bin/python3.9 /opt/python/cp39-cp39/bin/python; \
-  ln -s /usr/bin/pip /opt/python/cp39-cp39/bin/pip
+RUN mkdir -p /opt/python/cp312-cp312/bin; \
+  ln -s /usr/bin/python3.12 /opt/python/cp312-cp312/bin/python; \
+  ln -s /usr/bin/pip /opt/python/cp312-cp312/bin/pip;
