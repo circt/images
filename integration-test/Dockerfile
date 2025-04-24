@@ -41,7 +41,7 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get update && apt-get install -y \
   python3.12-dev python3-pip
 
-RUN python3.12 -m pip install pycapnp psutil pybind11==2.11.2 nanobind==2.4.0 numpy jinja2 cocotb cocotb_test click
+RUN python3.12 -m pip --break-system-packages install pycapnp psutil pybind11==2.11.2 nanobind==2.4.0 numpy jinja2 cocotb cocotb_test click
 
 RUN apt-get update && apt-get install -y tcl
 
