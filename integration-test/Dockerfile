@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y \
   gawk \
   git \
   gperf \
+  iverilog \
   libffi-dev \
   libfl-dev \
   libfl2 \
@@ -82,10 +83,6 @@ RUN rm -r /tmp/verilator-*
 # Compile, install, then cleanup OR-Tools
 RUN /tmp/or-tools.sh
 RUN rm -r /tmp/or-tools-*
-
-# Compile, install, then cleanup iverilog
-RUN /tmp/iverilog.sh
-RUN rm -r /tmp/iverilog-*
 
 # Install a modern release of Z3
 RUN /tmp/z3.sh
