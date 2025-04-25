@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y \
   autoconf bc bison flex libfl2 libfl-dev perl libssl-dev \
   python3 python3-pip valgrind
 
+RUN python3 -m pip config set global.break-system-packages true
 RUN pip3 install yapf toml GitPython
 
 # Install a more recent release of LLVM
