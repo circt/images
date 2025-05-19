@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 # Downloads, compiles, and installs Verilator into $/ext
 
 VERILATOR_VER=4.110

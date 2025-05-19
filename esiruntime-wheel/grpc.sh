@@ -17,6 +17,7 @@ mkdir -p cmake/build
 cd cmake/build
 cmake -S ../.. -B . \
   -G Ninja \
+  -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
   -DgRPC_INSTALL=ON \
   -DCMAKE_BUILD_TYPE=Release
 ninja -j$(nproc)

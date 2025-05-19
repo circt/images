@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
+set -e
+
 # Installs gRPC from source.
 
 cd /tmp
 
 # v1.54.2 is the version in Ubuntu 22.04
-GRPC_VER=1.54.2
+GRPC_VER=1.54.0
 echo "Installing gRPC..."
 
 if [ ! -d grpc ]; then
@@ -16,6 +18,7 @@ mkdir -p cmake/build
 cd cmake/build
 cmake -S ../.. -B . \
   -G Ninja \
+  -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
   -DgRPC_INSTALL=ON \
   -DCMAKE_BUILD_TYPE=Release
 ninja -j$(nproc)
