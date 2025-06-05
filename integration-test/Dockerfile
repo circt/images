@@ -58,7 +58,7 @@ RUN update-alternatives \
   --slave /usr/bin/clang-format-diff clang-format-diff /usr/bin/clang-format-diff-17 \
   --slave /usr/bin/git-clang-format git-clang-format /usr/bin/git-clang-format-17 \
   --slave /usr/bin/lld lld /usr/bin/lld-17 \
-  --slave /usr/bin/ld.lld /usr/bin/lld-17
+  --slave /usr/bin/ld.lld lld /usr/bin/lld-17
 
 COPY *.sh /tmp/
 
