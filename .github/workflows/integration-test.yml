@@ -25,22 +25,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup environment
-        run: |
-          TAG=$(echo $GITHUB_REF | cut -d / -f 3)
-          echo "GHCR_TAG=ghcr.io/${{github.repository}}/circt-integration-test:$TAG" >> $GITHUB_ENV
-
-      - name: Build image
-        run: docker build . --tag $GHCR_TAG
-
-      - name: Force push testing image
-        if: ${{ github.event_name != 'release' }}
-        run: |
-          echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
-          docker push testing
-
-      - name: Push image
+      - name: Build and Push Testing Image
         if: ${{ github.event_name == 'release' }}
         run: |
+          TAG=testing
+          docker build . --tag ghcr.io/${{github.repository}}/circt-ci-build:$TAG
           echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
-          docker push $GHCR_TAG
+          docker push ghcr.io/${{github.repository}}/circt-ci-build:$TAG
+
+      - name: Build and Push Image
+        if: ${{ github.event_name == 'release' }}
+        run: |
+          TAG=$(echo $GITHUB_REF | cut -d / -f 3)
+          docker build . --tag ghcr.io/${{github.repository}}/circt-ci-build:$TAG
+          echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
+          docker push ghcr.io/${{github.repository}}/circt-ci-build:$TAG
