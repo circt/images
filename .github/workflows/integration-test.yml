@@ -28,15 +28,15 @@ jobs:
       - name: Build and Push Testing Image
         if: ${{ github.event_name == 'release' }}
         run: |
-          TAG=testing
-          docker build . --tag ghcr.io/${{github.repository}}/circt-integration-test:$TAG
-          echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
-          docker push ghcr.io/${{github.repository}}/circt-integration-test:$TAG
-
-      - name: Build and Push Image
-        if: ${{ github.event_name == 'release' }}
-        run: |
-          TAG=$(echo $GITHUB_REF | cut -d / -f 3)
+          TAG=
+          case ${{ github.event_name }} in
+            "release")
+              TAG=$(echo $GITHUB_REF | cut -d / -f 3)
+              ;;
+            *)
+              TAG="testing"
+              ;;
+          esac
           docker build . --tag ghcr.io/${{github.repository}}/circt-integration-test:$TAG
           echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
           docker push ghcr.io/${{github.repository}}/circt-integration-test:$TAG
