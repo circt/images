@@ -33,6 +33,12 @@ jobs:
       - name: Build image
         run: docker build . --tag $GHCR_TAG
 
+      - name: Force push testing image
+        if: ${{ github.event_name != 'release' }}
+        run: |
+          echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
+          docker push testing
+
       - name: Push image
         if: ${{ github.event_name == 'release' }}
         run: |
