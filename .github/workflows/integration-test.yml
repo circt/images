@@ -24,7 +24,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Build and Push Testing Image
+      - name: Build and Push Image
         run: |
           TAG=
           case ${{ github.event_name }} in
