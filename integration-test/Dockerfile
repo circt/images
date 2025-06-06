@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
   ca-certificates \
   ccache \
   clang-17 \
+  clang-format-17 \
   clang-tidy-17 \
   cmake \
   curl \
@@ -28,6 +29,7 @@ RUN apt-get update && apt-get install -y \
   libssl-dev \
   libsystemc-dev \
   libtool \
+  lld-17 \
   lsb-release \
   make \
   man \
@@ -50,14 +52,16 @@ RUN python3.12 -m pip config set global.break-system-packages true
 RUN python3.12 -m pip install pycapnp psutil pybind11==2.11.2 nanobind==2.4.0 numpy jinja2 cocotb cocotb_test click
 
 RUN update-alternatives \
-  --install /usr/bin/clang             clang             /usr/bin/clang-17 100 \
+  --verbose \
+  --install /usr/bin/clang             clang             /usr/bin/clang-17 0 \
   --slave   /usr/bin/clang++           clang++           /usr/bin/clang++-17 \
-  --slave   /usr/bin/clang-tidy        clang-tidy        /usr/bin/clang-tidy-17 \
-  --slave   /usr/bin/clang-tidy-diff   clang-tidy-diff   /usr/bin/clang-tidy-diff-17.py \
   --slave   /usr/bin/clang-format      clang-format      /usr/bin/clang-format-17 \
   --slave   /usr/bin/clang-format-diff clang-format-diff /usr/bin/clang-format-diff-17 \
+  --slave   /usr/bin/clang-tidy        clang-tidy        /usr/bin/clang-tidy-17 \
+  --slave   /usr/bin/clang-tidy-diff   clang-tidy-diff   /usr/bin/clang-tidy-diff-17.py \
   --slave   /usr/bin/git-clang-format  git-clang-format  /usr/bin/git-clang-format-17 \
-  --slave   /usr/bin/lld               lld               /usr/bin/lld-17
+  --slave   /usr/bin/lld               lld               /usr/bin/lld-17 \
+  --slave   /usr/bin/ld.lld            ld.lld            /usr/bin/ld.lld-17
 
 COPY *.sh /tmp/
 
