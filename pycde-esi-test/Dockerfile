@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y \
   gawk \
   git \
   gperf \
+  help2man \
   iverilog \
   libffi-dev \
   libfl-dev \

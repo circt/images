@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/bin/bash -e
 # Downloads, compiles, and installs Verilator into $/ext
 
-VERILATOR_VER=4.110
+VERILATOR_VER=5.040
 
 cd /tmp
 wget https://github.com/verilator/verilator/archive/v$VERILATOR_VER.tar.gz
