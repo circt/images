@@ -36,27 +36,27 @@ RUN setx /M PATH "%PATH%;C:\Program Files\Git\bin"
 # Download and install python versions.
 ADD https://www.python.org/ftp/python/3.12.0/python-3.12.0-amd64.exe C:\TEMP\python312-install.exe
 RUN C:\TEMP\python312-install.exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0
-RUN ("C:\Program Files\Python312/python.exe" -m pip install wheel numpy pyyaml pybind11 nanobind==2.4.0 cocotb cocotb-test jinja2 psutil)
+RUN ("C:\Program Files\Python312/python.exe" -m pip install wheel numpy pyyaml pybind11 nanobind==2.9.2 cocotb cocotb-test jinja2 psutil)
 
 ADD https://www.python.org/ftp/python/3.11.6/python-3.11.6-amd64.exe C:\TEMP\python311-install.exe
 RUN C:\TEMP\python311-install.exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0
-RUN ("C:\Program Files\Python311/python.exe" -m pip install wheel numpy pyyaml pybind11 nanobind==2.4.0 cocotb cocotb-test jinja2 psutil)
+RUN ("C:\Program Files\Python311/python.exe" -m pip install wheel numpy pyyaml pybind11 nanobind==2.9.2 cocotb cocotb-test jinja2 psutil)
 
 ADD https://www.python.org/ftp/python/3.10.8/python-3.10.8-amd64.exe C:\TEMP\python310-install.exe
 RUN C:\TEMP\python310-install.exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0
-RUN ("C:\Program Files\Python310/python.exe" -m pip install wheel numpy pyyaml pybind11 nanobind==2.4.0 cocotb cocotb-test jinja2 psutil)
+RUN ("C:\Program Files\Python310/python.exe" -m pip install wheel numpy pyyaml pybind11 nanobind==2.9.2 cocotb cocotb-test jinja2 psutil)
 
 ADD https://www.python.org/ftp/python/3.9.13/python-3.9.13-amd64.exe C:\TEMP\python39-install.exe
 RUN C:\TEMP\python39-install.exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0
-RUN ("C:\Program Files\Python39/python.exe" -m pip install wheel numpy pyyaml pybind11 nanobind==2.4.0 cocotb cocotb-test jinja2 psutil)
+RUN ("C:\Program Files\Python39/python.exe" -m pip install wheel numpy pyyaml pybind11 nanobind==2.9.2 cocotb cocotb-test jinja2 psutil)
 
 ADD https://www.python.org/ftp/python/3.8.10/python-3.8.10-amd64.exe C:\TEMP\python38-install.exe
 RUN C:\TEMP\python38-install.exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0
-RUN ("C:\Program Files\Python38\python.exe" -m pip install wheel numpy pyyaml pybind11 nanobind==2.4.0 cocotb cocotb-test jinja2 psutil)
+RUN ("C:\Program Files\Python38\python.exe" -m pip install wheel numpy pyyaml pybind11 nanobind==2.9.2 cocotb cocotb-test jinja2 psutil)
 
 ADD https://www.python.org/ftp/python/3.7.9/python-3.7.9-amd64.exe C:\TEMP\python37-install.exe
 RUN C:\TEMP\python37-install.exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0
-RUN ("C:\Program Files\Python37\python.exe" -m pip install wheel numpy pyyaml pybind11 nanobind==2.4.0 cocotb cocotb-test jinja2 psutil)
+RUN ("C:\Program Files\Python37\python.exe" -m pip install wheel numpy pyyaml pybind11 nanobind==2.9.2 cocotb cocotb-test jinja2 psutil)
 
 # Get latest version of cmake
 ADD https://github.com/Kitware/CMake/releases/download/v3.26.0/cmake-3.26.0-windows-x86_64.msi C:\TEMP\cmake.msi
