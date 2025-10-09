@@ -44,7 +44,7 @@ RUN apt-get update && apt-get install -y \
   python3.12-dev python3-pip
 
 RUN python3.12 -m pip config set global.break-system-packages true
-RUN python3.12 -m pip install psutil pybind11==2.11.2 nanobind==2.9.2 numpy jinja2 cocotb cocotb_test click
+RUN python3.12 -m pip install psutil pybind11==2.11.2 nanobind==2.9.2 numpy jinja2 cocotb~=1.9 cocotb_test~=0.2 click
 
 RUN apt-get update && apt-get install -y tcl
 
