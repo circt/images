@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y \
   python3 python3-pip valgrind
 
 RUN python3 -m pip config set global.break-system-packages true
-RUN pip3 install yapf toml GitPython
+RUN pip3 install yapf toml GitPython psutil
 
 # Install a more recent release of LLVM
 RUN wget https://apt.llvm.org/llvm.sh; \
