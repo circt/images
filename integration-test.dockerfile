@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y \
   gawk \
   git \
   gperf \
+  help2man \
   iverilog \
   libffi-dev \
   libfl-dev \
@@ -67,30 +68,13 @@ RUN ln -s /usr/bin/clang-17 /usr/bin/clang; \
 RUN add-apt-repository ppa:ubuntu-toolchain-r/test
 RUN apt install -y g++-11
 
-COPY *.sh /tmp/
-
-# Install modern release of CMake
+# Install tools
+COPY install/*.sh /tmp/
 RUN /tmp/cmake.sh
-
-# Compile, install, then cleanup Verilator
 RUN /tmp/verilator.sh
-RUN rm -r /tmp/verilator-*
-
-# Compile, install, then cleanup gRPC
-# RUN /tmp/grpc.sh
-# RUN rm -r /tmp/grpc
-
-# Compile, install, then cleanup OR-Tools
 RUN /tmp/or-tools.sh
-RUN rm -r /tmp/or-tools-*
-
-# Install a modern release of Z3
 RUN /tmp/z3.sh
-
-# Install Yosys.
 RUN /tmp/yosys.sh
-
-# Install SymbiYosys.
 RUN /tmp/sby.sh
 
 # Create manylinux compatible directory structure.

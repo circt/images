@@ -10,6 +10,8 @@ requires that the image definition and any files the definition needs to
 testing) `cd` into the image directory and run `docker build . -t <tag>`
 wherein tag is what you want the image to be called.
 
+The `install` directory contains installation scripts shared by multiple images.
+
 ## Workflow
 
 The publishing workflow for all the images is in

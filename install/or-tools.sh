@@ -1,7 +1,5 @@
-#!/bin/bash
-# Downloads, compiles, and installs OR-Tools into /usr
-
-set -e
+#!/bin/bash -xe
+# Downloads, compiles, and installs OR-Tools
 
 OR_TOOLS_VER=9.5
 
@@ -13,7 +11,6 @@ OR_TOOLS_VER=9.5
 cd /tmp
 wget https://github.com/google/or-tools/archive/v$OR_TOOLS_VER.tar.gz
 tar -zxf v$OR_TOOLS_VER.tar.gz
-rm v$OR_TOOLS_VER.tar.gz
 cd or-tools-$OR_TOOLS_VER
 cmake -S . -B build \
   -GNinja \
@@ -26,3 +23,8 @@ cmake -S . -B build \
 
 cmake --build build --parallel $(nproc)
 cmake --install build --prefix /usr
+
+# Cleanup
+cd /tmp
+rm v$OR_TOOLS_VER.tar.gz
+rm -r or-tools-$OR_TOOLS_VER
