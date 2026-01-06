@@ -1,5 +1,4 @@
-#!/bin/bash
-# Download and install a modern release of CMake into "/usr".
+#!/bin/bash -xe
 
 CMAKE_VER=3.23.2
 
@@ -15,4 +14,9 @@ cd /tmp
 wget https://github.com/Kitware/CMake/releases/download/v$CMAKE_VER/$INSTALL_SCRIPT
 chmod +x $INSTALL_SCRIPT
 ./$INSTALL_SCRIPT --skip-license --prefix=/usr
+
+# Cleanup
 rm $INSTALL_SCRIPT
+
+# Sanity check
+cmake --version | grep "cmake version $CMAKE_VER"

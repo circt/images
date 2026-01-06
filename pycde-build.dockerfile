@@ -7,14 +7,10 @@ RUN yum install -y \
   wget ninja-build autoconf bc bison flex flex-devel perl \
   python3 python3-devel
 
-COPY *.sh /tmp/
-
+# Install tools
+COPY install/*.sh /tmp/
 RUN /tmp/verilator.sh
-RUN rm -r /tmp/verilator-*
-
-# Compile, install, then cleanup gRPC
 RUN /tmp/grpc.sh
-RUN rm -r /tmp/grpc
 
 # Install sccache
 ENV sccache_version=0.5.4

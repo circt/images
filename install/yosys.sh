@@ -12,6 +12,8 @@ export PREFIX=/usr
 make config-clang
 make -j$(nproc)
 make install
+
+# Cleanup
 cd /tmp
 rm -r /tmp/yosys
 

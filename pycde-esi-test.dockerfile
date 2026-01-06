@@ -68,18 +68,11 @@ RUN ln -s /usr/bin/clang-17 /usr/bin/clang; \
 RUN add-apt-repository ppa:ubuntu-toolchain-r/test
 RUN apt install -y g++-11
 
-COPY *.sh /tmp/
-
-# Install modern release of CMake
+# Install tools
+COPY install/*.sh /tmp/
 RUN /tmp/cmake.sh
-
-# Compile, install, then cleanup Verilator
 RUN /tmp/verilator.sh
-RUN rm -r /tmp/verilator-*
-
-# Compile, install, then cleanup gRPC
 RUN /tmp/grpc.sh
-RUN rm -r /tmp/grpc
 
 # Create manylinux compatible directory structure.
 RUN mkdir -p /opt/python/cp312-cp312/bin; \

@@ -10,7 +10,9 @@ tar -zxf yosys-$YOSYS_VER.tar.gz
 rm yosys-$YOSYS_VER.tar.gz
 cd sby-yosys-$YOSYS_VER
 make PREFIX=/usr install
-cd ..
+
+# Cleanup
+cd /tmp
 rm -r sby-yosys-$YOSYS_VER
 
 # Perform a sanity check.
