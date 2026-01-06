@@ -1,18 +1,20 @@
 name: Integration Test Image
 
 on:
+  workflow_dispatch:
   push:
     branches: [trunk, main]
     paths:
-      - 'integration-test/**'
-      - '.github/workflows/integration-test.yml'
+      - .github/workflows/integration-test.yml
+      - install/**
+      - integration-test.dockerfile
   pull_request:
     paths:
-      - 'integration-test/**'
-      - '.github/workflows/integration-test.yml'
+      - .github/workflows/integration-test.yml
+      - install/**
+      - integration-test.dockerfile
   release:
     types: [published]
-  workflow_dispatch:
 
 jobs:
   build:
