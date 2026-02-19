@@ -42,6 +42,9 @@ RUN msiexec /i C:\TEMP\pwsh-install.msi
 # Clone and bootstrap vcpkg.
 RUN cd c:\ && git clone https://github.com/Microsoft/vcpkg.git && .\vcpkg\bootstrap-vcpkg.bat
 
+# Don't use vcpkg's binary caching. It only wastes time and disk space.
+ENV VCPKG_BINARY_SOURCES="clear"
+
 # Install zlib via vcpkg.
 RUN c:\vcpkg\vcpkg install --clean-after-build --triplet x64-windows zlib
 
