@@ -45,10 +45,10 @@ RUN msiexec /i C:\TEMP\pwsh-install.msi
 RUN cd c:\ && git clone https://github.com/Microsoft/vcpkg.git && .\vcpkg\bootstrap-vcpkg.bat
 
 # Install zlib via vcpkg.
-RUN c:\vcpkg\vcpkg install --triplet x64-windows install zlib
+RUN c:\vcpkg\vcpkg install --triplet x64-windows zlib
 
 # Install capnproto via vcpkg.
-RUN c:\vcpkg\vcpkg install --triplet x64-windows install grpc
+RUN c:\vcpkg\vcpkg install --triplet x64-windows grpc
 
 # Use developer command prompt and start PowerShell if no other command specified.
 ENTRYPOINT C:\BuildTools\Common7\Tools\VsDevCmd.bat -arch=x64 -host_arch=x64 &&
