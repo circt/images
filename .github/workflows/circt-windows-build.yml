@@ -10,7 +10,7 @@ env:
 jobs:
   build-circt-windows-build-image:
     name: Build and push Windows Docker CI builds
-    runs-on: windows-2019
+    runs-on: windows-2025
     steps:
       - name: Get CIRCT images repo
         uses: actions/checkout@v4
