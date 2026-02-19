@@ -16,8 +16,6 @@ RUN C:\TEMP\vs_buildtools.exe --quiet --wait --norestart --nocache `
   --channelUri C:\TEMP\VisualStudio.chman `
   --installChannelUri C:\TEMP\VisualStudio.chman `
   --add Microsoft.VisualStudio.Workload.VCTools --includeRecommended `
-  --add Microsoft.VisualStudio.Component.VC.ATL `
-  --add Microsoft.VisualStudio.Component.VC.ATLMFC `
   --installPath C:\BuildTools
 
 # Install NuGet as package provider (needed for find-vs.ps1).
@@ -45,10 +43,13 @@ RUN msiexec /i C:\TEMP\pwsh-install.msi
 RUN cd c:\ && git clone https://github.com/Microsoft/vcpkg.git && .\vcpkg\bootstrap-vcpkg.bat
 
 # Install zlib via vcpkg.
-RUN c:\vcpkg\vcpkg install --triplet x64-windows zlib
+RUN c:\vcpkg\vcpkg install --clean-after-build --triplet x64-windows zlib
 
-# Install capnproto via vcpkg.
-RUN c:\vcpkg\vcpkg install --triplet x64-windows grpc
+# Install grpc via vcpkg.
+RUN c:\vcpkg\vcpkg install --clean-after-build --triplet x64-windows abseil
+RUN c:\vcpkg\vcpkg install --clean-after-build --triplet x64-windows c-ares re2 utf8-range
+RUN c:\vcpkg\vcpkg install --clean-after-build --triplet x64-windows protobuf
+RUN c:\vcpkg\vcpkg install --clean-after-build --triplet x64-windows grpc
 
 # Use developer command prompt and start PowerShell if no other command specified.
 ENTRYPOINT C:\BuildTools\Common7\Tools\VsDevCmd.bat -arch=x64 -host_arch=x64 &&
