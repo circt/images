@@ -49,20 +49,21 @@ RUN python3.12 -m pip install pycapnp psutil pybind11==2.11.2 nanobind==2.9.2 nu
 RUN apt-get update && apt-get install -y tcl
 
 # Install a more recent release of LLVM
-RUN wget https://apt.llvm.org/llvm.sh; \
-  chmod +x llvm.sh; \
-  ./llvm.sh 17;\
-  apt install -y clang-format-17 clang-tidy-17
+RUN wget https://apt.llvm.org/llvm.sh \
+  && chmod +x llvm.sh \
+  && ./llvm.sh 21 \
+  && apt-get update \
+  && apt install -y clang-format-21 clang-tidy-21
 
-RUN ln -s /usr/bin/clang-17 /usr/bin/clang; \
-  ln -s /usr/bin/clang++-17 /usr/bin/clang++; \
-  ln -s /usr/bin/clang-tidy-17 /usr/bin/clang-tidy; \
-  ln -s /usr/bin/clang-tidy-diff-17.py /usr/bin/clang-tidy-diff; \
-  ln -s /usr/bin/clang-format-17 /usr/bin/clang-format; \
-  ln -s /usr/bin/clang-format-diff-17 /usr/bin/clang-format-diff; \
-  ln -s /usr/bin/git-clang-format-17 /usr/bin/git-clang-format; \
-  ln -s /usr/bin/lld-17 /usr/bin/lld; \
-  ln -s /usr/bin/lld-17 /usr/bin/ld.lld
+RUN ln -s /usr/bin/clang-21 /usr/bin/clang; \
+  ln -s /usr/bin/clang++-21 /usr/bin/clang++; \
+  ln -s /usr/bin/clang-tidy-21 /usr/bin/clang-tidy; \
+  ln -s /usr/bin/clang-tidy-diff-21.py /usr/bin/clang-tidy-diff; \
+  ln -s /usr/bin/clang-format-21 /usr/bin/clang-format; \
+  ln -s /usr/bin/clang-format-diff-21 /usr/bin/clang-format-diff; \
+  ln -s /usr/bin/git-clang-format-21 /usr/bin/git-clang-format; \
+  ln -s /usr/bin/lld-21 /usr/bin/lld; \
+  ln -s /usr/bin/lld-21 /usr/bin/ld.lld
 
 # Install GCC 11 to get C++20 header support and support for building slang
 RUN add-apt-repository ppa:ubuntu-toolchain-r/test
