@@ -35,5 +35,5 @@ RUN ln -s /usr/bin/clang-21 /usr/bin/clang; \
 RUN add-apt-repository ppa:ubuntu-toolchain-r/test
 RUN apt install -y g++-11
 
-ADD https://github.com/Kitware/CMake/releases/download/v3.25.2/cmake-3.25.2-linux-x86_64.sh /tmp/cmake_install.sh
+ADD https://github.com/Kitware/CMake/releases/download/v3.28.4/cmake-3.28.4-linux-x86_64.sh /tmp/cmake_install.sh
 RUN bash /tmp/cmake_install.sh --prefix=/usr/local --skip-license
