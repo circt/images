@@ -59,7 +59,7 @@ RUN C:\TEMP\python37-install.exe /quiet InstallAllUsers=1 PrependPath=1 Include_
 RUN ("C:\Program Files\Python37\python.exe" -m pip install wheel numpy pyyaml pybind11 nanobind==2.9.2 cocotb~=1.9 cocotb-test~=0.2 jinja2 psutil)
 
 # Get latest version of cmake
-ADD https://github.com/Kitware/CMake/releases/download/v3.26.0/cmake-3.26.0-windows-x86_64.msi C:\TEMP\cmake.msi
+ADD https://github.com/Kitware/CMake/releases/download/v3.28.4/cmake-3.28.4-windows-x86_64.msi C:\TEMP\cmake.msi
 RUN msiexec /i C:\TEMP\cmake.msi
 
 # Install PowerShell

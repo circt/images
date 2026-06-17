@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 
-CMAKE_VER=3.23.2
+CMAKE_VER=3.28.4
 
 # Detect the host's architecture to download the appropriate release.
 case $(uname -m) in
