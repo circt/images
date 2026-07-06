@@ -10,7 +10,6 @@ RUN yum install -y \
 # Install tools
 COPY install/*.sh /tmp/
 RUN /tmp/verilator.sh
-RUN /tmp/grpc.sh
 
 # Install sccache
 ENV sccache_version=0.5.4

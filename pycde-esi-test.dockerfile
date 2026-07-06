@@ -72,7 +72,6 @@ RUN apt install -y g++-11
 COPY install/*.sh /tmp/
 RUN /tmp/cmake.sh
 RUN /tmp/verilator.sh
-RUN /tmp/grpc.sh
 
 # Create manylinux compatible directory structure.
 RUN mkdir -p /opt/python/cp312-cp312/bin; \

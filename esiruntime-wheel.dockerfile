@@ -6,4 +6,3 @@ RUN yum install -y \
 
 # Install tools
 COPY install/*.sh /tmp/
-RUN /tmp/grpc.sh
