@@ -1,4 +1,4 @@
-FROM quay.io/pypa/manylinux2014_x86_64
+FROM quay.io/pypa/manylinux_2_28_x86_64
 
 RUN yum install -y devtoolset-10
 RUN scl enable devtoolset-10 bash
